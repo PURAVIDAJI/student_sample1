@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+<h3>Student Info Edit</h3>
+<hr>
+
+<form th:object="${selected}" th:action="@{/view/update/{StudentId}(StudentId=${selected.getStudentId()})}" method="post" >
+<!--    action="@" method="post">-->
+    <ul>
+        <li>
+            ID : <input type="text" name="studentId" th:field="*{studentId}" readonly="readonly">
+        </li>
+        <li>
+            이름 : <input type="text" name="name" th:field="*{name}" readonly="readonly">
+        </li>
+        <li>
+            전공 : <input type="text" name="major" th:field="*{major}" >
+        </li>
+        <li>
+            학기 : <input type="text" name="semester" th:field="*{semester}"readonly="readonly">
+        </li>
+        <li>
+            학점 : <input type="text" name="point" th:field="*{point}" readonly="readonly">
+        </li>
+    </ul>
+    <hr>
+    <input type="submit" value="EDIT">
+
+</form>
+<a th:href="@{/view/detail/{studentId}(studentId=${selected.getStudentId()})}" >
+    <button type="submit">CANCEL</button>
+</a>
+<!--취소태그는 폼테그 안에 있으면 안됨. 같이 포스트로 매핑되어버림-->
+
+
+</body>
+</html>

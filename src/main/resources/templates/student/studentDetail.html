@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+<h3>Student Detail Info</h3>
+<hr>
+
+<ul th:each="s : ${student}">
+    <li>Student ID : <span th:text="${s.getStudentId}"></span></li>
+    <li>Student Name : <span th:text="${s.getName}"></span></li>
+    <li>Student Major : <span th:text="${s.getMajor}"></span></li>
+    <li>Student Semester : <span th:text="${s.getSemester}"></span></li>
+    <li>Student Point : <span th:text="${s.getPoint}"></span></li>
+</ul>
+<hr>
+
+<form th:object="${student}"
+      th:action="@{/view/update/{studentId}(studentId=${student.getStudentId()})}">
+    <button type="submit">EDIT</button>
+</form>
+<a th:href="@{/view/list}" >
+    <button type="submit">BACK</button>
+</a>
+
+
+
+</body>
+</html>

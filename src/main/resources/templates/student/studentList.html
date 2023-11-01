@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h3>Student List</h3>
+<hr>
+<table>
+    <tr>
+    <th>Student ID</th><th>Name</th><th>Major</th><th>수정</th><th>삭제</th>
+    </tr>
+    <tr th:each="s : ${students}">
+        <td th:text="${s.getStudentId()}">id</td>
+        <td>
+            <a th:href="@{/view/detail/{studentId}(studentId=${s.getStudentId()})}" th:text="${s.getName()}">
+                name
+            </a>
+        </td>
+        <td th:text="${s.getMajor()}">major</td>
+        <td>
+            <form th:action="@{/view/update/{studentId}(studentId=${s.getStudentId()})}">
+                <button type="submit">EDIT</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/view/delete/{studentId}(studentId=${s.getStudentId()})}" method="post">
+                <button type="submit">DELETE</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<h3>Student Registration</h3>
+<hr>
+<form th:href="@{/view/list}" method="post">
+    <ul>
+        <li>
+            이름 : <input type="text" name="name" placeholder="이름을 입력하세요.">
+        </li>
+        <li>
+            전공 : <input type="text" name="major" placeholder="전공을 입력하세요.">
+        </li>
+        <li>
+            학기 : <input type="text" name="semester" placeholder="이수한 학기 수를 입력하세요">
+        </li>
+        <li>
+            학점 : <input type="text" name="point" placeholder="평균 학점을 입력하세요.">
+        </li>
+    </ul>
+    <hr>
+    <input type="submit" value="REGISTER">
+</form>
+
+
+</body>
+</html>

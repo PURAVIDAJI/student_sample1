@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sample.repository.StudentRepository">
+<select id="viewAll"
+        resultType="Student">
+SELECT name, major,semester,point
+FROM studentinfo
+
+</select>
+
+    <select id="viewById"
+            resultType="Student">
+    SELECT *
+    FROM studentinfo
+    WHERE studentId = #{studentId}
+
+    </select>
+
+    <insert id = "insertStudent" parameterType="Student"
+            useGeneratedKeys="true"
+            keyProperty="studentId">
+    INSERT into studentinfo(name,major,semester,point)
+    VALUES (#{name}, #{major}, #{semester},#{point})
+    </insert>
+
+    <delete id="deleteById" parameterType="Student">
+    DELETE FROM studentinfo
+    WHERE studentid = #{studentId}
+    </delete>
+
+</mapper>
+
+
+
+
+<!--<update id="updatePost" parameterType="com.example.demo.model.Post">-->
+<!--UPDATE post-->
+<!--SET likes=#{likes}-->
+<!--WHERE postId = #{postid}-->
+<!--</update>-->
